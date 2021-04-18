@@ -2,19 +2,31 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat app</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat app</title>
 </head>
 
 <body>
-    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
-    <script>
-      const socket = io();
+  <input type="text" id="name" placeholder="Name">
+  <input type="text" id="massage" placeholder="Massage">
+  <button id="send">Send message</button>
+  <ul id="massegList">
 
-      socket.emit("massage",{name:"Roma",massage:"Ogo!"})
-    </script>
+  </ul>
+  <script src="https://cdn.socket.io/3.1.3/socket.io.min.js"
+    integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh"
+    crossorigin="anonymous"></script>
+  <script>
+    const socket = io();
+    document.getElementById("send").addEventListener("click", () => {
+      socket.emit("massage", { name: document.getElementById("name").value, massage: document.getElementById("massage").value })
+    })
+    socket.on("sendMassage",(data)=>{
+      document.getElementById("massegList").innerHTML += `${data.massage}<br>`;
+    })
+  </script>
 </body>
 
 </html>

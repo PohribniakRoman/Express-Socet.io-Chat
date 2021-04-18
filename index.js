@@ -9,10 +9,12 @@ const PORT = process.env.PORT || 3000;
 const massages = [];
 
 io.on("connection", (socket) => {
+
   socket.on("massage", (data) => {
     massages.push(data);
     io.emit("sendMassage", data);
   });
+  
 });
 
 app.get("/", (req, res) => {
