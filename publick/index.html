@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Chat app</title>
+</head>
+
+<body>
+  <section class="login">
+    <form>
+      <h1>Hello!</h1>
+      <input type="text" name="name" placeholder="Your name">
+      <input type="submit" value="Enter">
+    </form>
+  </section>
+  <section class="main">
+    <nav class="nav">
+      <h1>Chat</h1>
+      <p>Your name:<span id="name"></span></p>
+    </nav>
+    <ul id="massegList">
+
+    </ul>
+    <form class="send-form">
+      <input type="text" name="massage" placeholder="Massage">
+      <input type="submit" value="Send message">
+    </form>
+  </section>
+
+  <script src="https://cdn.socket.io/3.1.3/socket.io.min.js"
+    integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh"
+    crossorigin="anonymous"></script>
+  <script>
+    const socket = io();
+    window.addEventListener("load", () => {
+      if (localStorage.getItem("name")) {
+        document.querySelector(".login").classList.add("none");
+        document.getElementById("name").innerHTML = localStorage.getItem("name");
+        socket.emit("join");
+        socket.on("get history", data => {
+          data.forEach(massage => {
+            document.getElementById("massegList").innerHTML += `<li><div>${massage.name}</div><p>${massage.massage}</p></li>`;
+          });
+        });
+      } else {
+        document.querySelector(".main").classList.add("none");
+      }
+    })
+
+    document.forms[0].addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const { name } = event.target;
+      if (name.value.length > 3 || !localStorage.getItem("name")) {
+        localStorage.setItem("name", name.value);
+        document.querySelector(".login").classList.add("none");
+        document.querySelector(".main").classList.remove("none");
+        socket.emit("join");
+        socket.on("get history", data => {
+          data.forEach(massage => {
+            document.getElementById("massegList").innerHTML += `<li><div>${massage.name}</div><p>${massage.massage}</p></li>`;
+          });
+        });
+      }
+    })
+
+    document.forms[1].addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const { massage } = event.target;
+      if(massage.value){
+        socket.emit("massage", { name: localStorage.getItem("name"), massage: massage.value });
+        massage.value = "";
+      }
+    })
+    socket.on("sendMassage", (data) => {
+      document.getElementById("massegList").innerHTML += `<li><div>${data.name}</div><p>${data.massage}</p></li>`;
+    })
+  </script>
+</body>
+
+</html>

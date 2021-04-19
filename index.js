@@ -3,19 +3,21 @@ const path = require("path");
 const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
-
 const PORT = process.env.PORT || 3000;
-
 const massages = [];
 
 io.on("connection", (socket) => {
+  socket.on("join",()=>{
+    socket.emit("get history",massages);
+  })
 
   socket.on("massage", (data) => {
     massages.push(data);
     io.emit("sendMassage", data);
   });
-  
 });
+
+app.use(express.static("publick"));
 
 app.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "index.html"));
