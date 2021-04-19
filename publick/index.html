@@ -21,6 +21,7 @@
     <nav class="nav">
       <h1>Chat</h1>
       <p>Your name:<span id="name"></span></p>
+      <div id="logOut">Log out</div>
     </nav>
     <ul id="massegList">
 
@@ -49,6 +50,11 @@
       } else {
         document.querySelector(".main").classList.add("none");
       }
+    })
+
+    document.getElementById("logOut").addEventListener("click",()=>{
+      localStorage.removeItem("name");
+      location.reload();
     })
 
     document.forms[0].addEventListener("submit", (event) => {

@@ -64,11 +64,20 @@ table {
     font-weight: 600;
     color: rgb(0, 157, 255);
 }
-.nav p{
+.nav div{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    cursor: pointer;
     opacity: 0.7;
     font-size: 12px;
+}
+.nav p{
+    font-size: 12px;
+    opacity: 0.7;
+    top: 5px;
+    right: 5px;
     position: absolute;
-    right: 10px;
 }
 .main{
     width: 600px;
