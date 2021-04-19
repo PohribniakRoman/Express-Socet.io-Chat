@@ -37,7 +37,6 @@
     crossorigin="anonymous"></script>
   <script>
     const socket = io();
-    window.addEventListener("load", () => {
       if (localStorage.getItem("name")) {
         document.querySelector(".login").classList.add("none");
         document.getElementById("name").innerHTML = localStorage.getItem("name");
@@ -50,7 +49,6 @@
       } else {
         document.querySelector(".main").classList.add("none");
       }
-    })
 
     document.getElementById("logOut").addEventListener("click",()=>{
       localStorage.removeItem("name");
