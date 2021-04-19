@@ -83,28 +83,33 @@ table {
     width: 600px;
     margin: 0 auto;
 }
-#massegList{
+#messegList{
     display: flex;
     flex-direction: column;
     min-height:80vh;
     max-height:80vh;
     border: 1px solid #000;
+    overflow: scroll;
 }
-#massegList li{
+#messegList li{
     border-radius: 10px;
+    max-width: 600px;
     margin: 5px;
     padding: 10px 15px;
     background-color: rgb(184, 245, 148);
     font-family: 'Raleway', sans-serif;
 }
-#massegList li p::first-letter{
+#messegList li p::first-letter{
     text-transform: uppercase;
 }
-#massegList li p{
+#messegList li p{
+    word-wrap: break-word;
+    max-width: 600px;
+    line-height: 20px;
     padding: 5px 0;
     font-weight: 300;
 }
-#massegList li div{
+#messegList li div{
     font-size: 18px;
     font-weight: 600;
     color: rgb(0, 157, 255);

@@ -23,7 +23,7 @@
       <p>Your name:<span id="name"></span></p>
       <div id="logOut">Log out</div>
     </nav>
-    <ul id="massegList">
+    <ul id="messegList">
 
     </ul>
     <form class="send-form">
@@ -43,7 +43,7 @@
         socket.emit("join");
         socket.on("get history", data => {
           data.forEach(massage => {
-            document.getElementById("massegList").innerHTML += `<li><div>${massage.name}</div><p>${massage.massage}</p></li>`;
+            document.getElementById("messegList").innerHTML += `<li><div>${massage.name}</div><p>${massage.massage}</p></li>`;
           });
         });
       } else {
@@ -66,7 +66,7 @@
         socket.emit("join");
         socket.on("get history", data => {
           data.forEach(massage => {
-            document.getElementById("massegList").innerHTML += `<li><div>${massage.name}</div><p>${massage.massage}</p></li>`;
+            document.getElementById("messegList").innerHTML += `<li><div>${massage.name}</div><p>${massage.massage}</p></li>`;
           });
         });
       }
@@ -83,7 +83,7 @@
       }
     })
     socket.on("sendMassage", (data) => {
-      document.getElementById("massegList").innerHTML += `<li><div>${data.name}</div><p>${data.massage}</p></li>`;
+      document.getElementById("messegList").innerHTML += `<li><div>${data.name}</div><p>${data.massage}</p></li>`;
     })
   </script>
 </body>

@@ -4,15 +4,18 @@ const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 const PORT = process.env.PORT || 3000;
-const massages = [];
+let messages = [];
 
 io.on("connection", (socket) => {
   socket.on("join",()=>{
-    socket.emit("get history",massages);
+    socket.emit("get history",messages);
   })
 
   socket.on("massage", (data) => {
-    massages.push(data);
+    if (messages.length > 30) {
+      messages = []
+    }
+    messages.push(data);
     io.emit("sendMassage", data);
   });
 });
