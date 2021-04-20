@@ -27,7 +27,7 @@
 
     </ul>
     <form class="send-form">
-      <input type="text" name="massage" placeholder="Massage">
+      <input type="text" name="message" placeholder="Message">
       <input type="submit" value="Send message">
     </form>
   </section>
@@ -37,20 +37,20 @@
     crossorigin="anonymous"></script>
   <script>
     const socket = io();
-      if (localStorage.getItem("name")) {
-        document.querySelector(".login").classList.add("none");
-        document.getElementById("name").innerHTML = localStorage.getItem("name");
-        socket.emit("join");
-        socket.on("get history", data => {
-          data.forEach(massage => {
-            document.getElementById("messegList").innerHTML += `<li><div>${massage.name}</div><p>${massage.massage}</p></li>`;
-          });
+    if (localStorage.getItem("name")) {
+      document.querySelector(".login").classList.add("none");
+      document.getElementById("name").innerHTML = localStorage.getItem("name");
+      socket.emit("join");
+      socket.on("get history", data => {
+        data.forEach(message => {
+          document.getElementById("messegList").innerHTML += `<li><div>${message.name}</div><p>${message.message}</p></li>`;
         });
-      } else {
-        document.querySelector(".main").classList.add("none");
-      }
+      });
+    } else {
+      document.querySelector(".main").classList.add("none");
+    }
 
-    document.getElementById("logOut").addEventListener("click",()=>{
+    document.getElementById("logOut").addEventListener("click", () => {
       localStorage.removeItem("name");
       location.reload();
     })
@@ -60,13 +60,14 @@
 
       const { name } = event.target;
       if (name.value.length > 3 || !localStorage.getItem("name")) {
+
         localStorage.setItem("name", name.value);
         document.querySelector(".login").classList.add("none");
         document.querySelector(".main").classList.remove("none");
         socket.emit("join");
         socket.on("get history", data => {
-          data.forEach(massage => {
-            document.getElementById("messegList").innerHTML += `<li><div>${massage.name}</div><p>${massage.massage}</p></li>`;
+          data.forEach(message => {
+            document.getElementById("messegList").innerHTML += `<li><div>${message.name}</div><p>${message.message}</p></li>`;
           });
         });
       }
@@ -75,15 +76,14 @@
 
     document.forms[1].addEventListener("submit", (event) => {
       event.preventDefault();
-
-      const { massage } = event.target;
-      if(massage.value){
-        socket.emit("massage", { name: localStorage.getItem("name"), massage: massage.value });
-        massage.value = "";
+      const { message } = event.target;
+      if (message.value) {
+        socket.emit("massage", { name: localStorage.getItem("name"), message: message.value });
+        message.value = "";
       }
     })
-    socket.on("sendMassage", (data) => {
-      document.getElementById("messegList").innerHTML += `<li><div>${data.name}</div><p>${data.massage}</p></li>`;
+    socket.on("sendMessage", (data) => {
+      document.getElementById("messegList").innerHTML += `<li><div>${data.name}</div><p>${data.message}</p></li>`;
     })
   </script>
 </body>

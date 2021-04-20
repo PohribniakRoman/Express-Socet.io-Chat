@@ -16,7 +16,7 @@ io.on("connection", (socket) => {
       messages = []
     }
     messages.push(data);
-    io.emit("sendMassage", data);
+    io.emit("sendMessage", data);
   });
 });
 
