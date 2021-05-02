@@ -1,167 +1,261 @@
 /* reset */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 /* fonts */
 
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap'); /* font-family: 'Raleway', sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap"); /* font-family: 'Raleway', sans-serif;
 
 /* styles */
-.nav{
-    font-family: 'Raleway', sans-serif;
-    width: 100%;
-    height: 8vh;
-    margin-bottom: 2vh;
-    background-color: #000;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    position: relative;
-    justify-content: center;
+.nav {
+  font-family: "Raleway", sans-serif;
+  width: 100%;
+  height: 8vh;
+  margin-bottom: 2vh;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: center;
 }
 .nav h1 {
-    font-size: 25px;
-    font-weight: 600;
-    color: rgb(0, 157, 255);
+  font-size: 25px;
+  font-weight: 600;
+  color: rgb(0, 157, 255);
 }
-.nav div{
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    cursor: pointer;
-    opacity: 0.7;
-    font-size: 12px;
+.nav div {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  cursor: pointer;
+  opacity: 0.7;
+  font-size: 12px;
 }
-.nav p{
-    font-size: 12px;
-    opacity: 0.7;
-    top: 5px;
-    right: 5px;
-    position: absolute;
+.nav p {
+  font-size: 12px;
+  opacity: 0.7;
+  top: 5px;
+  right: 5px;
+  position: absolute;
 }
-.main{
-    width: 600px;
-    margin: 0 auto;
+.main {
+  width: 600px;
+  margin: 0 auto;
 }
-#messegList{
-    display: flex;
-    flex-direction: column;
-    min-height:80vh;
-    max-height:80vh;
-    border: 1px solid #000;
-    overflow: scroll;
-}
-#messegList li{
-    border-radius: 10px;
-    max-width: 600px;
-    margin: 5px;
-    padding: 10px 15px;
-    background-color: rgb(184, 245, 148);
-    font-family: 'Raleway', sans-serif;
-}
-#messegList li p::first-letter{
-    text-transform: uppercase;
-}
-#messegList li p{
-    word-wrap: break-word;
-    max-width: 600px;
-    line-height: 20px;
-    padding: 5px 0;
-    font-weight: 300;
-}
-#messegList li div{
-    font-size: 18px;
-    font-weight: 600;
-    color: rgb(0, 157, 255);
-}
-.send-form{
-    display: flex;
-    position: absolute;
-    width: 600px;
-    bottom: 5vh;
-}
-.send-form input[type="text"]{
-    width: 75%;
-    outline: none;
-    padding: 5px 10px;
-}
-.send-form input[type="submit"]{
-    width: 25%;
-}
-.none{
+#messegList::-webkit-scrollbar {
     display: none;
+ } 
+#messegList {
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
+  max-height: 80vh;
+  border: 1px solid #000;
+  position: relative;
+  overflow-y: scroll;
+}
+#messegList li {
+  border-radius: 10px;
+  max-width: 600px;
+  margin: 5px;
+  padding: 10px 15px;
+  background-color: rgb(184, 245, 148);
+  font-family: "Raleway", sans-serif;
+}
+#messegList li p::first-letter {
+  text-transform: uppercase;
+}
+#messegList li p {
+  word-wrap: break-word;
+  max-width: 600px;
+  line-height: 20px;
+  padding: 5px 0;
+  font-weight: 300;
+}
+#messegList li div {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgb(0, 157, 255);
+}
+.send-form {
+  display: flex;
+  position: absolute;
+  width: 600px;
+  bottom: 5vh;
+}
+.send-form input[type="text"] {
+  width: 75%;
+  outline: none;
+  padding: 5px 10px;
+}
+.send-form input[type="submit"] {
+  width: 25%;
+}
+.none {
+  display: none;
 }
 
-.login{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+.login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-.login input[type="submit"]{
-    margin-left: -10px;
-    padding: 5px 10px;
-    border: 1px solid rgb(0, 0, 0);
-    background-color: rgb(0, 0, 0);
-    color: #fff;
-    border-radius: 0;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    cursor: pointer;
-    outline: none;
+.login input[type="submit"] {
+  margin-left: -10px;
+  padding: 5px 10px;
+  border: 1px solid rgb(0, 0, 0);
+  background-color: rgb(0, 0, 0);
+  color: #fff;
+  border-radius: 0;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+  outline: none;
 }
-.login h1{
-    text-align: center;
-    font-family: 'Raleway', sans-serif;
-    font-size: 25px;
-    margin: 20px;
+.login h1 {
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  font-size: 25px;
+  margin: 20px;
 }
-.login input[type="text"]{
-    padding: 5px 10px;
-    outline: none;
-    font-family: 'Raleway', sans-serif;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border: 1px solid rgb(0, 157, 255);
-    background-color: rgba(0, 157, 255,0.8);
+.login input[type="text"] {
+  padding: 5px 10px;
+  outline: none;
+  font-family: "Raleway", sans-serif;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border: 1px solid rgb(0, 157, 255);
+  background-color: rgba(0, 157, 255, 0.8);
+}
+
+#my-message div {
+  color: #fff !important;
+}
+#my-message {
+  color: #000;
+  background-color: rgb(0, 195, 255) !important;
+  text-align: right;
 }

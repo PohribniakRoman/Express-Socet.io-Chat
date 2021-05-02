@@ -24,7 +24,6 @@
       <div id="logOut">Log out</div>
     </nav>
     <ul id="messegList">
-
     </ul>
     <form class="send-form">
       <input type="text" name="message" placeholder="Message">
@@ -43,12 +42,19 @@
       socket.emit("join");
       socket.on("get history", data => {
         data.forEach(message => {
-          document.getElementById("messegList").innerHTML += `<li><div>${message.name}</div><p>${message.message}</p></li>`;
-        });
+          if (message.name === localStorage.getItem("name")) {
+            document.getElementById("messegList").innerHTML += `<li id="my-message"><div>${message.name}</div><p>${message.message}</p></li>`;
+          } else {
+            document.getElementById("messegList").innerHTML += `<li><div>${message.name}</div><p>${message.message}</p></li>`;
+          }
+        }
+        );
       });
     } else {
       document.querySelector(".main").classList.add("none");
     }
+    
+    document.querySelector("ul").scrollTo = 300;
 
     document.getElementById("logOut").addEventListener("click", () => {
       localStorage.removeItem("name");
@@ -77,13 +83,17 @@
     document.forms[1].addEventListener("submit", (event) => {
       event.preventDefault();
       const { message } = event.target;
-      if (message.value) {
+      if (message.value && message.value.length < 200) {
         socket.emit("massage", { name: localStorage.getItem("name"), message: message.value });
         message.value = "";
       }
     })
     socket.on("sendMessage", (data) => {
-      document.getElementById("messegList").innerHTML += `<li><div>${data.name}</div><p>${data.message}</p></li>`;
+      if (data.name === localStorage.getItem("name")) {
+        document.getElementById("messegList").innerHTML += `<li id="my-message"><div>${data.name}</div><p>${data.message}</p></li>`;
+      } else {
+        document.getElementById("messegList").innerHTML += `<li><div>${data.name}</div><p>${data.message}</p></li>`;
+      }
     })
   </script>
 </body>
